@@ -1,6 +1,6 @@
 const {test, expect} = require('@playwright/test')
 
-test('Browser context Playwright test', async ({browser}) => {
+test.only('Browser context Playwright test', async ({browser}) => {
 
     const context = await browser.newContext();
     const poge = await context.newPage();
@@ -13,10 +13,15 @@ test('Browser context Playwright test', async ({browser}) => {
     await page.locator('#username').fill("Yo");
     await page.locator("[type='password']").fill("Yo!!");
     await page.locator("#signInBtn").click();
+
+    // webdriverwait
+    // textContent(): fetch這個locator的text content這個locator的text content
+    console.log(await page.locator("[stylt*='block']").textContent());
+    await expect(page.locator("[stylt*='block']")).toContainText('Incrrect');
     
 });
 
-test.only('Page Playwright test', async ({page}) => {
+test('Page Playwright test', async ({page}) => {
 
     await page.goto("https://google.com");
     console.log(await page.title());
