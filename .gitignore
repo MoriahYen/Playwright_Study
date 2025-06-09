@@ -5,3 +5,8 @@ node_modules/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# 忽略 Playwright 測試檔
+*.spec.ts
+*.spec.js
+tests/
