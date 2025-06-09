@@ -1,24 +1,26 @@
-const {test, expect} = require('@playwright/test')
+import { test, expect } from '@playwright/test';
 
 test.only('Browser context Playwright test', async ({browser}) => {
 
     const context = await browser.newContext();
-    const poge = await context.newPage();
-    // 暫時找不到可以測試的網頁
-    await page.goto("https://playwright.dev/docs/test-timeouts");
+    const page = await context.newPage();
+    // const userName = page.locator("[style*='block']");
+    // const signIn = page.locator("#signInBtn");
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     console.log(await page.title());
 
     // css      type, fill
     // 現在不要用type
-    await page.locator('#username').fill("Yo");
-    await page.locator("[type='password']").fill("Yo!!");
+    await page.locator("#username").type("rahulshetty");
+    await page.locator("[type='password']").type("learning");
     await page.locator("#signInBtn").click();
 
+    // wait until this locatpe shown up page
     // webdriverwait
     // textContent(): fetch這個locator的text content這個locator的text content
-    console.log(await page.locator("[stylt*='block']").textContent());
-    await expect(page.locator("[stylt*='block']")).toContainText('Incrrect');
-    
+    console.log(await page.locator("[style*='block']").textContent());
+    await expect(page.locator("[style*='block']")).toContainText('Incorrect');
+
 });
 
 test('Page Playwright test', async ({page}) => {
