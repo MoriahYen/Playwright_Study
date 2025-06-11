@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig, devices, expect } from '@playwright/test';
+import { trace } from 'console';
 
 const config = ({
   testDir: './tests',
@@ -7,11 +8,13 @@ const config = ({
   expect: {
     timeout: 5000,
   },
-  reporter: "html",
+  repoter: 'html',
 
   use: {
     browserName: "chromium", //"webkit", //"firefox", //"chromium"
     headless: false,
+    screenshot: 'on',
+    trace: 'retain-on-failure', //'on',
     
   },
 
