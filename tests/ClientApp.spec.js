@@ -32,6 +32,20 @@ test('Client App Login', async ({page}) => {
     const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
     expect(bool).toBeTruthy();
 
+    await page.locator("text=Checkout").click();
+    // input的框框選字只有在typing的時候出現，直接paste不會
+    await page.locator("[placeholder*='Country']").pressSequentially("ind");
+    const dropdown = page.locator(".ta-results");
+    await dropdown.waitFor();
+    const optionsCount = await dropdown.locator("button").count();
+    for (let i = 0; i < optionsCount; ++i) {
+        const text = await dropdown.locator("button").nth(i).textContent();
+        if (text === " India") {
+            await dropdown.locator("button").nth(i).click();
+            break;
+        }
+    }
+    await page.pause();
 
 
 });
