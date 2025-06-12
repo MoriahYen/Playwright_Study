@@ -2,10 +2,11 @@ import { test, expect } from '@playwright/test';
 
 test('Client App Login', async ({page}) => {
 
+    const email = "moriah.yen@rawstone.com.tw";
     const productName = 'ZARA COAT 3';
     const pruducts = page.locator(".card-body");
     await page.goto("https://rahulshettyacademy.com/client");
-    await page.locator("#userEmail").fill("moriah.yen@rawstone.com.tw");
+    await page.locator("#userEmail").fill(email);
     await page.locator("#userPassword").fill("Test1234");
     await page.locator("[value='Login']").click();
     // await page.waitForLoadState('networkidle');
@@ -45,7 +46,11 @@ test('Client App Login', async ({page}) => {
             break;
         }
     }
-    await page.pause();
+    expect(page.locator(".user__name [type='text']").first()).toHaveText(email);
+   await page.locator(".action__submit").click();
+   await expect(page.locator(".hero-primary")).toHaveText(" Thankyou for the order. ");
+   const orderId = await page.locator(".em-spacer-1 .ng-star-inserted").textContent();
+   console.log(orderId);
 
 
 });
