@@ -22,8 +22,16 @@ test('Client App Login', async ({page}) => {
             await pruducts.nth(i).locator("text =  Add To Cart").click();
             break;
         }
-            
-
     }
-    
+
+    await page.locator("[routerlink*='cart']").click();
+    // wait cart裡有框框出現，只等第一個element出現就好
+    await page.locator("div li").first().waitFor();
+    // 用h3識別，才不會找別的'ZARA COAT 3'
+    // isVisible()不屬於auto-wait
+    const bool = await page.locator("h3:has-text('ZARA COAT 3')").isVisible();
+    expect(bool).toBeTruthy();
+
+
+
 });
