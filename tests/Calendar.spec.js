@@ -16,4 +16,10 @@ test('Calendar validation', async ({ page }) => {
         .nth(Number(monthNumber) - 1)
         .click();
     await page.locator("//abbr[text()='" + date + "']").click();
+
+    const inputs = await page.locator('.react-date-picker__inputGroup input');
+    for (let index = 0; index < inputs.length; index++) {
+        const value = inputs[index].getAttribute('value');
+        expect(value).toEqual(expectedList[index]);
+    }
 });
