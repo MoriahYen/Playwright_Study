@@ -16,8 +16,11 @@ test('@Web Popup validations', async ({ page }) => {
     page.on('dialog', dialog => dialog.accept()); //dismiss()
     await page.locator('#confirmbtn').click();
     await page.locator('#mousehover').hover();
-    // const framesPage = page.frameLocator('#courses-iframe');
-    // await framesPage.locator("li a[href*='lifetime-access']:visible").click();
-    // const textCheck = await framesPage.locator('.text h2').textContent();S
-    // console.log(textCheck.split(' ')[1]);
+
+    // switch to iframe
+    const framesPage = page.frameLocator('#courses-iframe');
+    // i a[href*='lifetime-access']會得到兩個elememt，只需要visible那個
+    await framesPage.locator("li a[href*='lifetime-access']:visible").click();
+    const textCheck = await framesPage.locator('.text h2').textContent();
+    console.log(textCheck.split(' ')[1]);
 });
