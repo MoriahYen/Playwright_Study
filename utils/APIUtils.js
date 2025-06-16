@@ -1,4 +1,4 @@
-class APiUtils {
+class APIUtils {
     constructor(apiContext, loginPayLoad) {
         this.apiContext = apiContext; // inject WebAPIPart1.spec.js的apiContext
         this.loginPayLoad = loginPayLoad;
@@ -38,4 +38,4 @@ class APiUtils {
         return response;
     }
 }
-module.exports = { APiUtils };
+module.exports = { APIUtils };
