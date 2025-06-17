@@ -4,7 +4,7 @@ import { trace } from 'console';
 
 const config = {
     testDir: './tests',
-    timeout: 100 * 1000,
+    timeout: 30 * 1000,
     expect: {
         timeout: 5000,
     },
@@ -14,7 +14,7 @@ const config = {
         browserName: 'chromium', //"webkit", //"firefox", //"chromium"
         headless: false,
         screenshot: 'on',
-        trace: 'retain-on-failure', //'on',
+        trace: 'on', //'on', 'retain-on-failure'
     },
 };
 module.exports = config;
