@@ -25,11 +25,19 @@ test('@Web Popup validations', async ({ page }) => {
     console.log(textCheck.split(' ')[1]);
 });
 
-test.only('Screenshot & Visual comparision', async ({ page }) => {
+test('Screenshot & Visual comparision', async ({ page }) => {
     await page.goto('https://rahulshettyacademy.com/AutomationPractice/');
     await expect(page.locator('#displayed-text')).toBeVisible();
     await page.locator('#displayed-text').screenshot({ path: 'partialScreenshot.png' });
     await page.locator('#hide-textbox').click();
     await page.screenshot({ path: 'screenshot.png' });
     await expect(page.locator('#displayed-text')).toBeHidden();
+});
+
+//screenshot -store -> screenshot ->
+test.only('visual', async ({ page }) => {
+    //make payment -when you 0 balance
+    await page.goto('https://www.stdtime.gov.tw/home/WebClock');
+    await page.waitForTimeout(3000);
+    expect(await page.screenshot()).toMatchSnapshot('landing.png');
 });
